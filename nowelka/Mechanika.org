@@ -1,0 +1,42 @@
+
+* Są cztery rodzaje konfrontacji
+** Rozmowa
+** Pojedynek
+** Manipulacja (przedmiotem)
+** Zagadka
+
+* Każda karta posiada aspekty - w zależności od konfrontacji może działać inaczej
+
+* Aspekt może być aktywny (akcja) bądź pasywny (modyfikator). Aktywne aspekty stanowią podstawę do akcji, natomiast bierne pozwalają ją zmodyfikować.
+
+* Konfrontacja dzieli się na rundy, w każdej rundzie, gracze równocześnie przechodzą serię faz
+
+* Początek konfrontacji
+** Do gry wybiera się wszystkie karty, które mają aspekt danej konfrontacji
+** Wszystkie karty są zablokowane (przekręcone na bok)
+
+* Fazy rundy
+- Odblokowanie karty :: G wybiera dowolną zablokowaną kartę, którą od tej pory może używać (już do końca konfrontacji)
+- Akcja :: G może zagrać dowolną akcję
+- Blok :: G może zagrać dowolny modyfikator na akcję przeciwnika
+- Wzmocnienie :: G może zagrać dowolny modyfikator na swoją akcję
+- Efekty :: W tej turze obliczane są obrażenia oraz stosowane są dodatkowe efekty kart
+
+* Po zastosawaniu obu modyfikatorów, dla każdej akcji obliczane są cztery współczynniki (magia / siła / wytrzymałość / precyzja)
+
+* W fazie efektów
+** Stosowane są wstępne zasady obu kart
+** Siła ataku przeciwnika - wytrzymałość obrony (ale co najmniej 0) odejmowana jest od zdrowia gracza
+** Stosowane są końcowe zasady obu kart
+
+* Zagrane karty są odkładane i każda z nich odnawia się przez X rund (okres odnowienia), po czym mogą zostać ponownie użyte
+
+* Karty posiadają dodatkowo typy, które ułatwiają opisywanie ich efektów (ognisty, pieniądze, mechaniczny, spirytystyczny)
+
+* TODO W każdej rundzie losowane jest zdarzenie, które narzuca dodatkowe zasady
+** Np. ograniczenie czasu do 10s
+** Np. gra w otwarte karty
+
+* TODO Każdy rodzaj konfrontacji może mieć dodatkowe zasady
+** Konfrontacja z ograniczonym czasem
+** Konfrontacja na precyzję

@@ -1,0 +1,10 @@
+
+* Silnik fabularny
+** Usunąć background: 'black'
+** Nazwa sceny -> identyfikator (w instrukcji)
+** Przenieść okienko dialogowe pod listę przedmiotów
+* Karcianka
+** DONE z-index stołu powinien być pod ręką
+** DONE wskazówki na stole
+** DONE Odblokowanie kart na końcu gry
+** DONE Opcja nie-rzucania karty

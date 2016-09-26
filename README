@@ -1,0 +1,3 @@
+W katalogu `karcianka` jest część karciankowa, w katalogu `nowelka` jest część fablarna. Obie części działają dobrze tylko na najnowszej przeglądarce Chrome. Żadna nie jest skończona (no i na razie nie są ze sobą w żaden sposób połączone) ale pokazują jak gotowa gra będzie działać i wyglądać.
+
+Żeby uruchomić którąś część, wejdź do katalogu i uruchom "SERWER.exe". W zasobniku systemowym pojawi się ikonka działającego serwera - to znacza, że możesz wejść na http://localhost:8080 i zacznie się gra.

@@ -1,0 +1,520 @@
+@font-face {
+    font-family: Allura;
+    src: url(Allura.ttf);
+}
+
+@font-face {
+    font-family: JimNightshade;
+    src: url(JimNightshade.ttf);
+}
+
+@font-face {
+    font-family: Milonga;
+    src: url(Milonga.ttf);
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-size: 24px;
+}
+
+body {
+    background: black;
+    color: white;
+    font-family: Milonga;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    -moz-user-select: none;
+    user-select: none;
+    cursor: default;
+    perspective: 500px;
+}
+
+body.active {
+    cursor: pointer;
+}
+
+#background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#background div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+#equipment {
+    width: 100%;
+    height: 30vh;
+    position: fixed;
+    left: 0;
+    padding: 2vmin;
+    text-align: center;
+}
+
+#equipment img {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 3px;
+    box-shadow: 0 0 20px black;
+    max-height: 30vh;
+    margin: 0 -5vh;
+    transition: all .5s;
+    opacity: .5;
+    transform: translate(0, -25%) scale(.5,.5) rotateX(0deg);
+    z-index: 0;
+}
+
+#equipment img:hover {
+    opacity: 1;
+    transform: translate(0, 0) scale(1,1) rotateX(30deg);
+    z-index: 100;
+}
+
+@keyframes new_item {
+    0% { 
+        opacity: 0;
+        transform: translate(0, 100px) scale(3,3) rotateY(180deg) rotateZ(600deg);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(0, 100px) scale(1,1) rotateY(0deg) rotateZ(0deg);
+    }
+    70% {
+        transform: translate(0, 100px);
+    }
+    80% {
+        opacity: 1;
+        transform: translate(0, 110px) scale(1,1);
+    }
+}
+
+#left, #right {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    perspective: 600px;
+}
+
+#left { left: 0; }
+
+#right { right: 0; }
+
+#right {
+    transform: scaleX(-1);
+}
+
+#left div, #right div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left center;
+    transition: all .3s;
+    filter: brightness(100%);
+}
+
+.oneline {
+    white-space: nowrap;
+    position: absolute;
+}
+
+#left div:nth-child(1), #right div:nth-child(1) {
+    background-position: left center;
+    z-index: 2;
+}
+
+#left div:nth-child(2), #right div:nth-child(2) {
+    background-position: right center;
+    z-index: 1;
+}
+
+.discussion #left div:not(.talking), .discussion #right div:not(.talking) {
+    filter: brightness(50%);
+}
+
+#dialog {
+    background: rgba(0,0,0,0.8);
+    box-sizing: border-box;
+    padding: 5vmin;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 90vw;
+    display: flex;
+    justify-content: stretch;
+    align-items: stretch;
+    flex-direction: column;
+    margin: 5vh 5vw;
+    z-index: 50;
+}
+
+.fullscreen #dialog {
+    background: none;
+    height: 90vh;
+    max-height: none;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+#message {
+    flex: 0 0 auto;
+}
+
+#options {
+    margin: 0;
+    text-shadow: 0 0 1em white;
+}
+
+#options li {
+    cursor: pointer;
+    transition: all .2s;
+    text-shadow: 0 0 .5em white;
+}
+
+#options li:first-child, #title:not(:empty) {
+    margin-top: 2vmin;
+}
+
+#message:not(:empty) + #thought:not(:empty) {
+    margin-top: 2vmin;
+}
+
+#options li:hover {
+    color: red;
+}
+
+#thought {
+    flex: 0 0 auto;
+    font-family: JimNightshade;
+    color: #fff8;
+    /*
+    color: #000;
+    text-shadow: 0 0 1em white, 0 0 1em white, 0 0 1em white, 0 0 1em white, 0 0 1em white, 0 0 1em white, 0 0 1em white;
+    */
+}
+
+#title {
+    display: none;
+    flex: 0 0 auto;
+    font-family: Allura;
+    text-align: right;
+}
+
+.game {
+    perspective: 1000px;
+    perspective-origin: 50% 50%;
+}
+
+.game #left, .game #right, .game #equipment, .game #dialog {
+    display: none;
+}
+
+.card {
+    position: fixed;
+    display: inline-block;
+    transition: top 1s, bottom 1s, left 1s, margin-bottom .5s, margin-top .5s, transform .5s;
+    transform-style: preserve-3d;
+    
+    transform-origin: 50% 50%;
+    transform: rotateX(45deg);
+    bottom: 0%;
+    margin-bottom: -8.269581056466302vw;
+    
+    width: 10vw;
+    height: 16.539162112932604vw;
+    
+    box-shadow: 0 0 30px black;
+}
+
+.opponent {
+    transform: rotateX(-45deg) rotateY(180deg);
+    bottom: auto;
+    top: 0;
+    margin-top: -8.269581056466302vw;
+    margin-bottom: auto;
+}
+
+.card img {
+    position: absolute;
+    max-width: 10vw;
+    backface-visibility: hidden;
+}
+
+.card img.face {
+}
+
+.card img.back {
+    transform: rotateY(180deg);
+}
+
+.card.hovered {
+    transform: rotateX(0deg);
+    bottom: 0%;
+    margin-bottom: 8.269581056466302vw;
+}
+
+.opponent.played {
+    top: 50% !important;
+    margin-top: -8.269581056466302vw;
+}
+
+.played {
+    bottom: 50% !important;
+    margin-bottom: -8.269581056466302vw;
+    transform: rotateX(0deg);
+    z-index: 1;
+}
+
+.card:not(.played) {
+    
+    z-index: 2;
+}
+
+.reversed {
+    transform: rotateY(180deg);
+}
+
+.lock {
+    position: absolute;
+    width: 10vw;
+    height: 16.539162112932604vw;
+    background-color: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    transition: opacity .5s;
+}
+
+.locked .lock {
+    opacity: 1;
+}
+
+.tooltip {
+    position: absolute;
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 150;
+    white-space: pre;
+    backface-visibility: hidden;
+    opacity: 0;
+    transition: opacity .5s;
+    bottom: 0;
+    left: 50%;
+    width: 8vw;
+    font-size: 14px;
+    margin-left: -5vw;
+    text-align: center;
+    border-radius: 1vw 1vw 0 0;
+    transform: translate3d(0,0,0.1px);
+    padding: 1vw;
+}
+
+.card:hover .tooltip, .card.hovered .tooltip {
+    opacity: 1;
+}
+
+.score {
+    position: fixed;
+    text-align: center;
+    width: 10vw;
+    height: 16.539162112932604vw;
+    top: 50%;
+    margin-top: -8.269581056466302vw;
+    z-index: 2;
+    background: rgba(0,0,0,0.6);
+    transition: left 1s, opacity 1s;
+    opacity: 0;
+}
+
+.score.active { opacity: 1 !important; }
+#my_score { left: -10%; }
+#opponent_score { left: 100%; }
+
+.score > div {
+    position: absolute;
+    width: 10vw;
+    height: 16.539162112932604vw;
+    display: flex;
+    flex-direction: column;
+}
+.score > div > div {
+    flex: 1 0 0;
+    text-shadow: 0 0 5px black;
+    font-size: 3vw;
+    line-height: 5.5vw;
+    transition: font-size .5s, text-shadow .5s;
+}
+.score .labels .raised {
+    font-size: 4vw;
+    text-shadow: 0 0 5px white;
+}
+.score .backgrounds div {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.score .attack { background-image: url('attack.png'); }
+.score .defense { background-image: url('defense.png'); }
+.score .precision { background-image: url('precision.png'); }
+
+#fields { display: none; position: absolute; }
+.game #fields { display: block; }
+
+.placeholder {
+    position: fixed;
+    top: 50%;
+    margin-top: -8.269581056466302vw;
+    
+    width: 10vw;
+    height: 16.539162112932604vw;
+    line-height: 16.539162112932604vw;
+    text-align: center;
+    
+    color: rgba(255,255,255,0.5);
+    border-radius: .5vw;
+    transition: opacity .5s;
+    opacity: 0;
+}
+
+#my_placeholder {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+    left: -20vw;
+}
+
+#my_placeholder:hover {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+#my_placeholder:before {
+    opacity: 0;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url('give_up.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: opacity .5s;
+}
+#my_placeholder:hover:before {
+    opacity: 1;
+}
+
+#opponent_placeholder {
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    left: 110vw;
+}
+
+.placeholder.active { opacity: 1; }
+
+.card1 { left: 2% !important; }
+.card2 { left: 14% !important; }
+.card3 { left: 26% !important; }
+.card4 { left: 64% !important; }
+.card5 { left: 76% !important; }
+.card6 { left: 88% !important; }
+
+#unlocker {
+    position: fixed;
+    z-index: 3;
+    left: 45%;
+    bottom: 50%;
+    margin-bottom: -5vw;
+    
+    width: 10vw;
+    height: 10vw;
+    
+    background-image: url('locked.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0;
+}
+
+#unlocker.active {
+    opacity: 1;
+}
+
+.life_counter {
+    position: fixed;
+    left: 45%;
+    width: 10%;
+    text-align: center;
+    font-size: 2em;
+    line-height: 50vh;
+    transition: font-size .5s, text-shadow .5s;
+    z-index: 2;
+}
+
+.life_counter.raised {
+    font-size: 3em;
+    text-shadow: 1px 1px #888, 2px 2px #888, 3px 3px #888, 0 0 10px white !important;
+}
+
+#my_life { top: 50%; text-shadow: 1px 1px #444, 2px 2px #444, 3px 3px #444, 0 0 5px black; }
+#opponent_life { top: 0%; text-shadow: 1px 1px #444, 2px 2px #444, 3px 3px #444, 0 0 5px black; }
+
+
+@keyframes play_card {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes spinning_fly_in {
+    from { opacity: 0; transform: scale(6,6) rotate(800deg); }
+    to { opacity: 1; transform: scale(1,1) rotate(0deg); }
+}
+
+@keyframes fly_in {
+    from { opacity: 0; transform: scale(1.2,1.2); }
+    to { opacity: 1; transform: scale(1,1); }
+}
+
+@keyframes fly_out {
+    from { opacity: 1; transform: scale(1,1); }
+    to { opacity: 0; transform: scale(.8,.8); }
+}
+
+@keyframes slide_from_bottom {
+    from { opacity: 0; transform: translate(0,100px); }
+    to { opacity: 1; transform: translate(0,0); }
+}
+
+@keyframes slide_from_left {
+    from { opacity: 0; transform: translate(-100px,0); }
+    to { opacity: 1; transform: translate(0,0); }
+}
+
+@keyframes slide_from_right {
+    from { opacity: 0; transform: translate(100px,0); }
+    to { opacity: 1; transform: translate(0,0); }
+}
+
+@keyframes slide_to_left {
+    to { opacity: 0; transform: translate(-100px,0); }
+    from { opacity: 1; transform: translate(0,0); }
+}
+
+@keyframes slide_to_right {
+    to { opacity: 0; transform: translate(100px,0); }
+    from { opacity: 1; transform: translate(0,0); }
+}

@@ -1,0 +1,52 @@
+<!doctype html>
+<meta charset=utf-8>
+<title>Steampunkowi Piraci</title>
+<script src=webfont.js></script>
+<script>WebFont.load({ custom: { families: ['Allura', 'Milonga', 'JimNightshade'] } });</script>
+<link rel=stylesheet href=style.css>
+<script>var polyfilter_scriptpath = 'css-filters/';</script>
+<script src="css-filters/cssParser.js"></script>
+<script src="css-filters/css-filters-polyfill.js"></script>
+<audio id=music autoplay></audio>
+<audio id=ambient autoplay></audio>
+<div id=background></div>
+<div id=left></div>
+<div id=right></div>
+<div id=dialog><div id=message></div><div id=thought></div><ol id=options></ol><div id=title></div></div>
+<div id=equipment></div>
+<div id=fields>
+    <div id=my_placeholder class=placeholder></div>
+    <div id=opponent_placeholder class=placeholder></div>
+    <div id=my_life class=life_counter>10</div>
+    <div id=opponent_life class=life_counter>10</div>
+    <div id=unlocker style='transition: all .5s;'></div>
+</div>
+<div class=score id=my_score>
+    <div class=backgrounds>
+        <div class=attack></div>
+        <div class=defense></div>
+        <div class=precision></div>
+    </div>
+    <div class=labels>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<div class=score id=opponent_score>
+    <div class=backgrounds>
+        <div class=attack></div>
+        <div class=defense></div>
+        <div class=precision></div>
+    </div>
+    <div class=labels>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<script src=jquery-2.0.3.min.js></script>
+<script src=promise-0.1.1.min.js></script>
+<script src=compiler.js></script>
+<script src=prolog.js></script>
+<script src=engine.js></script>

@@ -1,0 +1,374 @@
+<!doctype html>
+<meta charset=utf-8>
+<link rel=stylesheet href=//fonts.googleapis.com/css?family=Milonga|Lekton|Alegreya+Sans:300,400,300italic&subset=latin-ext>
+<style>
+html {
+  font-family: 'Alegreya Sans', sans-serif;
+  font-size: 16pt;
+  font-weight: 300;
+  color: #886f3f;
+  background: #f9cd76;
+}
+
+a {
+  color: #6984f4;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+a:hover {
+  border-radius: .2em;
+  background: #6984f4;
+  color: white;
+}
+
+body {
+    margin: 5%;
+}
+
+code, pre {
+  font-variant: normal;
+  font-family: 'Lekton', sans-serif;
+  font-weight: 400;
+  font-size: .8em;
+  background: #fff1d5;
+  border-radius: .5em;
+  padding: .4em;
+}
+
+code {
+  padding: .3em .4em;
+  display: inline-block;
+  vertical-align: baseline;
+  line-height: 1em;
+}
+
+p {
+  line-height: 1.5em;
+}
+
+h1, h2, h3 {
+  font-weight: normal;
+  font-family: Milonga;
+  color: #fff1d5;
+}
+
+h1:first-letter, h2:first-letter, h3:first-letter {
+  color: #886f3f;
+  font-size: 1.5em;
+}
+
+h1 + p:first-line, h2 + p:first-line {
+  font-variant: small-caps;
+  font-size: 1.15em;
+}
+</style>
+<h1>Instrukcja</h1>
+<p>Rozdział składa się z zestawu plików mp3, grafik tła, przedmiotów
+i postaci oraz, co najważniejszego pliku <code>.js</code>.
+To on zawiera informacje o tym, jak zbudowany jest dany rozdział oraz
+jakie lokacje, przedmioty i postaci w nim występują.</p>
+
+<p>Na razie wszystkie rozdziały, grafiki będziemy trzymać w jednym katalogu.
+Łatwiej będzie wtedy wykorzystać tą samą grafikę lub muzykę w kilku rozdziałach.
+
+<p>Przykładowy rozdział nazywa się <code>prolog.js</code> i możesz go zobaczyć <a href=prolog.js>tutaj</a>.
+
+<h2>Postaci</h2>
+<p>Często występujące postaci można określić na początku pliku - łatwiej z nich później korzystać:</p>
+
+<pre>var galard = {
+  id: 'galard',
+  image: 'pirate.png',
+  title: 'Galard'
+};</pre>
+
+
+<p>Słowo <code>var</code> pozwala stworzyć <em>zmienną</em>. Po
+nim występuje nazwa zmiennej, z której od tej pory można korzystać. Każde użycie zmiennej
+spowoduje, że to co zostało do niej przypisane zostanie użyte w miejscu jej wstawienia.</p>
+
+<p>W nawiasach klamrowych znajduje się opis postaci. Każdy opis postaci ma trzy
+<em>pola</em>:</p>
+<dl>
+<dt><code>id</code><dd>zawierające <em>unikalny</em> napis identyfikujący postać (bez spacji!).
+Dzięki temu można zrobić kilka wersji tej samej postaci (<code>var galard_wesoly = ...</code>, <code>var galard_ranny = ...</code>, etc.),
+a dopóki wszystkie będą mieć to samo id, gra będzie wiedzieć, że to wciąż ta sama postać.
+<dt><code>image</code><dd>nazwa pliku z grafiką postaci
+<dt><code>title</code><dd>podpis pojawiający się po wskazaniu postaci
+</dl>
+
+<p>Opis postaci zbudowany jest w postaci ciągu par: <code>nazwa_pola: 'wartość pola'</code>.
+Jeśli występuje ich więcej, należy je oddzielić przecinkami. W razie potrzeby, zamiast apostrofów,
+do objęcia wartości można użyć cudzysłowiów. Jeśli wartością pola jest liczba, wartość true/false,
+albo nazwa innej zmiennej, w ogóle nie powinno stosować się apostrofów ani cudzysłowiów.</p>
+<p>Na końcu opisu postaci, za klamrą zamykającą, należy umieścić średnik.</p>
+
+<p>W większości przypadków wystarczy zmodyfikować przykładową postać. Więcej przykładów:</p>
+
+<pre>
+var zdrajca = {
+  id: 'zdrajca',
+  image: 'blackbeard_by_yakonusuke-d5hk0yl.png',
+  title: 'Zdrajca'
+};
+
+var dowodca = {
+  id: 'dowodca',
+  title: 'Dowódca gwardii admiralskiej',
+  image: 'pzo1124_constable_by_rhineville-d5lot9z.png'
+};
+
+var straznicy = {
+  id: 'straznicy',
+  image: 'Mercenary_by_Werdandi.png',
+  title: 'Strażnici'
+};
+
+var gwardzista1 = {
+  id: 'g1',
+  image: 'dbe59d5a1bf65c753a2403096b7608c1-d2r7o2g.png',
+  title: 'Gwardzista'
+};
+
+var gwardzista2 = {
+  id: 'g2',
+  image: 'dbe59d5a1bf65c753a2403096b7608c1-d2r7o2g2.png',
+  title: 'Gwardzista'
+};
+
+var martin = {
+  id: 'martin',
+  image: 'steam_soldier_by_idriu95-d3bv02q.png',
+  title: 'Martin'
+};
+
+var philip = {
+  id: 'philip',
+  image: 'Steampunk_Rooster_by_ursulav.png',
+  title: 'Philip'
+};
+</pre>
+
+<h2>Przedmioty</h2>
+
+<p>Przedmioty można zadeklarować na początku pliku tak samo jak postaci.
+Przedmioty posiadają takie same pola oraz ich działanie jest takie samo jak w przypadku
+postaci.</p>
+<p>Wykorzystanie przedmiotów różni się nieco od postaci, ale o tym później...</p>
+<p>Kilka przykładów:</p>
+<pre>
+var karta = {
+  id: 'karta',
+  image: 'Joker_Card.png',
+  title: 'Karta'
+};
+
+var sakiewka = {
+  id: 'sakiewka',
+  image: 'leather_belt_and_pouch_study_by_lupodirosso-d59m50d.jpg',
+  title: 'Sakiewka'
+};
+</pre>
+
+<h2>Inne zmienne</h2>
+
+<p>Dobrym pomysłem jest wyciągnięcie często powtarzanych napisów i zrobienie z nich
+zmiennych tak samo jak w przypadku postaci i przedmiotów. Pomaga to kiedy wiele scen ma
+to samo tło, muzykę lub cokolwiek innego.
+
+<p>Na przykład żeby zrobić zmienne z tłami można napisać:
+
+<pre>
+var tavern = 'tavern_by_anthonyavon-d6h3utd.jpg';
+var alley = 'boston_alley_by_wwudesign-d5t1uqg.jpg';
+var port = 'boston_port_fog_by_wwudesign-d5t1x0t.jpg';
+var street = 'new_york_street_by_wwudesign-d5t1waj.jpg';
+var underground = 'underground_temple_by_wwudesign-d5t1wmz.jpg';
+</pre>
+
+<p>Dzięki temu zamiast <code>'underground_temple_by_wwudesign-d5t1wmz.jpg'</code>, można będzie
+pisać <code>underground</code>. W razie zmiany grafiki wystarczy też podmienić ją w jednym miejscu
+zamiast szukać jej po wszystkich plikach.
+
+<h2>Sekwencja</h2>
+
+<p>Jedyne dwie zmienne, które są wymagane do działania gry to <code>sequence</code>, oraz <code>scene_index</code>.
+
+<p><code>sequence</code> zawiera listę scen. Każda scena opisuje wygląd pojedynczego ekranu -
+jakie postaci powinny być widoczne, która postać powinna mówić, co powinno być napisane, jakie ma być tło, muzyka, lista opcji do wyboru. Krótko mówiąc, wszystko co opisuje pojedynczy ekran.
+
+<p>Tą zmienną deklaruje się następująco:
+
+<pre>var sequence = [];</pre>
+
+<p>Do dodawania kolejnych scen przejdziemy za chwilę.</p>
+
+<p><code>scene_index</code> zawiera numer sceny, od której powinna zacząć się gra.
+W gotowej grze ta zmienna powinna być ustawiona na 0 - start od początku. Podczas
+edycji można ją jednak przestawić na numer sceny od której chcesz zacząć - umożliwia
+to szybsze testowanie zmian.</p>
+
+<pre>var scene_index = 0;</pre>
+
+<h2>Sceny</h2>
+
+<p>Sceny dodajemy do sekwencji pisząc <code>sequence.push({ pole: 'wartość', ...})</code>.
+Dla wygody czytania pola dobrze pisać w kolejnych liniach, wciętych nieco bardziej niż otaczające
+je linijki. Scena może mieć całkiem sporo pól. Pełen ich zestaw wygląda tak:</p>
+
+<pre>
+sequence.push({
+  id: 'ważna scena',
+  background: street,
+  timeout: 4,
+  fullscreen: false,
+  music: 'Zapac_-_They_re_coming....mp3',
+  ambient: '209354__robinhood76__04622-tavern-ambience-looping.mp3',
+  sound: '44366__debudding__spanish-lick-i-acoustic-ab-split-stereo-pair-oktava.mp3',
+  start_fun: function() {
+    add_item(karta);
+  },
+  left: { 0: galard },
+  right: { 0: gwardzista2, 1: straznicy },
+  enter: 'fly_in 1s',
+  exit: 'fly_out 1s',
+  message: 'Opuść broń a nikomu nie stanie się krzywda',
+  source: 'g2',
+  thought: 'Taa, jasne...',
+  0: {
+    text: 'Walcz z gwardzistami',
+    action: 'fight',
+    next: 'koniec walki'
+  },
+  1: {
+    text: 'Zesraj się w gacie',
+    action: 'think',
+    next: 'ważna scena'
+  },
+  next: 'pojmanie'
+});</pre>
+
+<p>Typowa scena będzie jednak dużo krótsza:</p>
+
+<pre>
+sequence.push({
+  background: street,
+  music: 'Zapac_-_They_re_coming....mp3',
+  left: { 0: galard },
+  thought: 'Biegłem na ślepo wąskimi portowymi alejkami....'
+});
+</pre>
+
+<p>Właściwie wszystkie pola są opcjonalne. Każde ma inny efekt:</p>
+
+<dl>
+<dt><code>id</code><dd>Nazwa sceny; można jej użyć żeby się do niej odwołać. Może zawierać spacje.
+<dt><code>background</code><dd>Nazwa pliku z grafiką tła lub napis 'black'. Silnik gry sam stwierdzi kiedy tło się zmieniło i jak zanimować jego zmianę.
+<dt><code>timeout</code><dd>Czas, po którym scena sama się zakończy.
+<dt><code>fullscreen</code><dd>Jeśli zawiera <code>true</code>, to okno z dialogiem zostanie rozciągnięte na cały ekran.
+<dt><code>music</code><dd>Nazwa pliku z muzyką. Silnik gry sam zajmie się płynną zmianą muzyki. Polecam serwis <a href=http://dig.ccmixter.org>dig.ccmixter.org</a>, skąd można pobrać sporo darmowej muzyki do gier i filmów.
+<dt><code>ambient</code><dd>Nazwa pliku z dźwiękami otoczenia. Silnik gry sam zajmie się płynną zmianą dźwięków otoczenia. Polecam serwis <a href=http://freesound.org>freesound.org</a>, skąd można pobrać nagrania z najróżniejszymi dźwiękami.
+<dt><code>sound</code><dd>Nazwa pliku dźwiękowego z efektem do odtworzenia na początku sceny. Spory zestaw efektów można znaleźć na <a href=http://freesound.org>freesound.org</a>.
+<dt><code>start_fun</code><dd>Fragment kodu javascript do uruchomienia na początku sceny. Zawsze otoczony przez <code>function() { ... }</code>. Jedyne polecenie, z którego można korzystać to <code>add_item(przedmiot)</code>. Spowoduje ono dodanie wskazanego przedmiotu do ekwipunku.
+<dt><code>left</code> i <code>right</code><dd>opisy grup postaci po lewej i prawej stronie sceny. Powinny mieć postać <code>{ 0: postać_pierwszoplanowa, 1: postać_drugoplanowa, ... }</code>. Jeśli jakaś postać zmieni stronę, opuści lub wkroczy na scenę, silnik gry sam zajmie się jej animacją.
+<dt><code>enter</code> i <code>exit</code><dd>nazwa oraz czas trwania animacji pojawiania się lub znikania dymka z wiadomością. Dostępne animacje wymienione są dalej. Kiedy animacja nie zostanie określona, silnik gry sam ją wybierze, zależnie od tego co robi aktualnie mówiąca postać.
+<dt><code>message</code><dd>Wiadomość w dymku. Silnik gry sam zmieni rozmiar czcionki i odstępy między literami tak żeby w maksymalnym stopniu wypełnić dostępne miejsce.
+<dt><code>source</code><dd>Identyfikator mówiącej postaci. Spowoduje, że odpowiednia postać się podświetli, a pozostałe wyciemnią.
+<dt><code>thought</code><dd>Myśl głównego bohatera. Wyświetlana <em>pod</em> <code>message</code>.
+<dt><code>0</code>, <code>1</code>, <code>2</code>, itd.<dd>Opcje do wyboru. Kiedy do wyboru jest jakaś opcja, silnik gry zablokuje automatyczne przechodzenie do kolejnej sceny przy kliknięciu. Każda opcja posiada własne pola:
+  <dl style="background: rgba(255, 255, 255, 0.2);padding:.5em">
+  <dt><code>text</code><dd>Tekst opcji. Wyświetlony pod <code>thought</code> oraz <code>message</code>.
+  <dt><code>action</code><dd>Docelowo w polu tym ma być rodzaj akcji: walka / dyskusja / pościg / zagadka. Na razie akcje nic nie robią.
+  <dt><code>next</code><dd>Identyfikator sceny, do której prowadzi dana opcja. Działa tak samo jak pole <code>next</code> w scenie.
+  </dl>
+<dt><code>next</code><dd>Identyfikator sceny, która powinna wystąpić jako następna. Może być podany jako napis (identyfikator) lub numer (liczony od początku). Jeśli tego pola nie ma, jako następna brana jest kolejna scena. To pole jest ignorowane jeśli gracz ma do wyboru jakieś opcje.
+</dl>
+
+<h2>Dostępne animacje</h2>
+
+<ul>
+  <li><code>new_item</code>
+  <li><code>spinning_fly_in</code>
+  <li><code>fly_in</code>
+  <li><code>fly_out</code>
+  <li><code>slide_from_bottom</code>
+  <li><code>slide_from_left</code>
+  <li><code>slide_from_right</code>
+  <li><code>slide_to_left</code>
+  <li><code>slide_to_right</code>
+</ul>
+
+<h2>Monologi</h2>
+
+<p>Jeśli cała seria scen różni się od siebie tylko jednym polem, można skorzystać ze specjalnego zapisu:
+
+<pre>
+sequence.push({
+  background: alley,
+  left: { 0: galard },
+  music: 'Zapac_-_They_re_coming....mp3',
+  thought: [
+    'Wyskakując przez okno pomyślałem...',
+    'W końcu pierwsze piętro...',
+    'Ochrzaniłbym go...',
+    'Oczywiście gdybym nie chciał go zabić.',
+    'Przy okazji zdobyłem...',
+    'Zapomniałem chyba wspomnieć co potrafię?',
+    'W sytuacjach takich jak ta...',
+    'Karty nauczyły mnie pewnych sztuczek...',
+    'Nigdy nie mówiłem, że jestem święty.',
+    'Urok to moje drugie imię.',
+    'Ostrzegam, gdy nie podziałają słowa...',
+    'Nie popadając w fałszywą skromność...',
+    'Życie to jedna wielka karcianka.'
+  ]
+});</pre>
+
+<p>Do pola, które ma się zmieniać zamiast normalnej wartości, przypisuje się całą serię wartości objętych nawiasami kwadratowymi i poodzielanych przecinkami.
+
+<p>Silnik gry taki zapis zinterpretuje jako 13 scen z takim samym tłem, postaciami, muzyką i właściwie wszystkim, z wyjątkiem jednego pola, które będzie się zmieniać.
+
+<p>Powinno to znacznie ułatwić rozbijanie długich monologów na osobne sceny.
+
+<h2>Dialogi</h2>
+
+<p>Często sceny różnią się więcej niż jednym polem, ale wszystkie pozostałe posiadają identyczne. Można wtedy skorzystać z zapisu, który oszczędzi niepotrzebnego powtarzania tych samych rzeczy:
+
+<pre>
+sequence.push({
+  background: tavern,
+  ambient: '209354__robinhood76__04622-tavern-ambience-looping.mp3',
+  left: { 0: galard },
+  right: { 0: zdrajca, 1: martin },
+  _: [
+    { source: 'galard',
+      message: 'Wygrałem. Jak zawsze zresztą' },
+    { source: 'zdrajca',
+      message: 'Masz dziś szczęście.' },
+    { source: 'galard',
+      message: 'Szczęście? Z takim przeciwnikiem wygrałaby i moja papuga.' },
+    { source: 'martin',
+      message: 'hahaha!' },
+    { source: 'galard',
+      message: 'Czy Ty w ogóle patrzysz na karty?' },
+    { source: 'zdrajca',
+      message: 'Tak... Oczywiście... Ja... Eh...',
+      thought: 'Tak, ja też uważam, że zachowuje się dziwnie. Szkoda, że dopiero teraz' },
+    { source: 'galard',
+      message: 'Kto wybrał to podłe miejsce? Ruszmy tyłki i znajdźmy lokal godny zwycięzców!' },
+    { source: 'zdrajca',
+      message: 'Nie! To absolutnie niemożliwe!' },
+    { source: 'galard',
+      message: 'Niby czemu? Wygrałem i to ja wyznaczam zasady!',
+      exit: 'fly_out 1s' }
+  ]
+});
+</pre>
+
+<p>Do sceny (lub czegokolwiek innego wewnątrz sceny) można dodać pole <code>_</code>, którego wartością jest lista <em>dodatków</em> oddzielonych przecinkami i otoczonych parą nawiasów kwadratowych.
+
+<p>Każdy dodatek może zawierać dowolny zestaw pól, które zostaną dodane do sceny w celu utworzenia kolejnej sceny.</p>
+
+<p>Powyższy kod odpowiada więc 9 scenom z takim samym tłem, dźwiękami otoczenia oraz postaciami. Każda ze scen ma jednak inne dodatki.
+
